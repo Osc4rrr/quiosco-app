@@ -22,7 +22,7 @@ const Pasos = () => {
   };
   return (
     <>
-      <div className='flex justify-between mb-5'>
+      <div className='flex justify-between mb-5 gap-4'>
         {pasos.map((paso) => (
           <button
             className='text-2xl font-bold'

@@ -19,7 +19,7 @@ export default function Home() {
           Elige y personaliza tu pedido a continuación
         </p>
 
-        <div className='grid gap-4 grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'>
+        <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'>
           {categoriaActual?.productos?.map((producto) => (
             <Producto key={producto.id} producto={producto} />
           ))}
