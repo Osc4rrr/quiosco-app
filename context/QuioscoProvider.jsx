@@ -13,11 +13,17 @@ const QuioscoProvider = ({ children }) => {
   const [pedido, setPedido] = useState([]);
   const [nombre, setNombre] = useState('');
   const [total, setTotal] = useState(0);
+  const [enlacesAdmin, setEnlacesAdmin] = useState([
+    { id: 1, nombre: 'Ordenes Pendientes', url: '/admin' },
+    { id: 2, nombre: 'Ordenes Completadas', url: '/admin/completadas' },
+  ]);
+
+  const [enlaceActualAdmin, setEnlaceActualAdmin] = useState({});
 
   const router = useRouter();
 
   const obtenerCategorias = async () => {
-    const { data } = await axios('api/categorias');
+    const { data } = await axios('/api/categorias');
     setCategorias(data);
   };
 
@@ -28,6 +34,14 @@ const QuioscoProvider = ({ children }) => {
   useEffect(() => {
     setCategoriaActual(categorias[0]);
   }, [categorias]);
+
+  useEffect(() => {
+    setEnlaceActualAdmin(enlacesAdmin[0]);
+
+    if (router.pathname === '/admin/completadas') {
+      router.push('/admin');
+    }
+  }, [enlacesAdmin]);
 
   useEffect(() => {
     const nuevoTotal = pedido.reduce(
@@ -42,6 +56,12 @@ const QuioscoProvider = ({ children }) => {
     const categoria = categorias.filter((cat) => cat.id === id);
     setCategoriaActual(categoria[0]);
     router.push('/');
+  };
+
+  const handleClickEnlaceAdmin = (id) => {
+    const enlace = enlacesAdmin.filter((enlace) => enlace.id === id);
+    setEnlaceActualAdmin(enlace[0]);
+    router.push(enlace[0].url);
   };
 
   const handleSetProducto = (producto) => {
@@ -124,6 +144,9 @@ const QuioscoProvider = ({ children }) => {
         nombre,
         colocarOrden,
         total,
+        enlacesAdmin,
+        handleClickEnlaceAdmin,
+        enlaceActualAdmin,
       }}
     >
       {children}

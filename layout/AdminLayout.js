@@ -1,9 +1,12 @@
+import EnlacesAdmin from '@/components/EnlacesAdmin';
+import useQuiosco from '@/hooks/useQuiosco';
 import Head from 'next/head';
 import Image from 'next/image';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function AdminLayout({ children, pagina }) {
+  const { enlacesAdmin } = useQuiosco();
   return (
     <>
       <Head>
@@ -19,6 +22,12 @@ export default function AdminLayout({ children, pagina }) {
             src='/assets/img/logo.svg'
             alt='imagen logotipo'
           />
+
+          <nav className='mt-10'>
+            {enlacesAdmin.map((enlace) => (
+              <EnlacesAdmin key={enlace.id} enlace={enlace} />
+            ))}
+          </nav>
         </aside>
 
         <main className='md:w-8/12 xl:w-3/4 2xl:w-4/5 h-screen overflow-y-scroll'>
