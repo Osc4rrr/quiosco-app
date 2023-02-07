@@ -22,7 +22,7 @@ export default function Completadas() {
       <h1 className='text-4xl font-black'>Panel de administración</h1>
       <p className='text-2xl my-10'>Ordenes ya completadas</p>
 
-      <h1 className='text-4xl font-black font-bold flex justify-between my-10'>
+      <h1 className='text-4xl font-black font-bold sm:flex md:flex justify-between my-10'>
         Total Recaudado{' '}
         <span className='text-4xl text-amber-500'>
           {formatearDinero(sumWithInitial)}
