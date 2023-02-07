@@ -6,7 +6,7 @@ import useQuiosco from '@/hooks/useQuiosco';
 const ResumenProducto = ({ producto }) => {
   const { handleEditarCantidades, handleEliminarProducto } = useQuiosco();
   return (
-    <div className='shadow p-5 mb-3 flex gap-10 items-center'>
+    <div className='shadow p-5 mb-3 sm:flex gap-10 items-center sm:flex-col md:flex-row'>
       <div className='md:w-1/6'>
         <Image
           width={300}
